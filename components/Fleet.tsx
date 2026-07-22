@@ -8,11 +8,11 @@ export default function Fleet() {
     },
     {
       name: "Light Duty Tow Truck",
-      image: "/images/hero-truck3.jpeg",
+      image: "/images/hero-truck2.jpeg",
     },
     {
       name: "White Flatbed",
-      image: "/images/hero-truck2.jpeg",
+      image: "/images/hero-truck3.jpeg",
     },
   ];
 
@@ -41,13 +41,9 @@ export default function Fleet() {
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4">
-
             <div className="h-[2px] w-16 rounded-full bg-yellow-400"></div>
-
             <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-
             <div className="h-[2px] w-16 rounded-full bg-yellow-400"></div>
-
           </div>
 
         </div>
