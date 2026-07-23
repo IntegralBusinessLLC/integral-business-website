@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import ContactModal from "./ContactModal";
 
 export default function Header() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur border-b border-yellow-500/40 z-50">
@@ -64,20 +60,20 @@ export default function Header() {
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
             </a>
 
-            <button
-              onClick={() => setIsContactOpen(true)}
+            <a
+              href="#contact"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
               Contact
 
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
-            </button>
+            </a>
 
           </nav>
 
           {/* Premium CTA */}
-          <button
-            onClick={() => setIsContactOpen(true)}
+          <a
+            href="#contact"
             className="
               hidden
               md:flex
@@ -114,15 +110,10 @@ export default function Header() {
               </div>
             </div>
 
-          </button>
+          </a>
 
         </div>
       </header>
-
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-      />
     </>
   );
 }

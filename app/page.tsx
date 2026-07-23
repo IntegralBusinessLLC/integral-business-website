@@ -4,6 +4,9 @@ import Services from "../components/services";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Fleet from "../components/Fleet";
 import CallNow from "../components/CallNow";
+import Reviews from "@/components/Reviews";
+import FloatingButtons from "@/components/FloatingButtons";
+
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <WhyChooseUs />
       <Fleet />
       <CallNow />
+      <Reviews />
+      <FloatingButtons />
+      
      
 
     </main>

@@ -35,7 +35,10 @@ export default function CallNow() {
   };
 
   return (
-    <section className="bg-[#080808] py-24 border-t border-yellow-500/20">
+    <section
+      id="contact"
+      className="scroll-mt-28 bg-[#080808] py-24 border-t border-yellow-500/20"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 rounded-3xl border border-yellow-500/20 bg-[#111] p-10 shadow-2xl shadow-yellow-500/10">
 
