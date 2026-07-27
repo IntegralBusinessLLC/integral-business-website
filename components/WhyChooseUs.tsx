@@ -1,12 +1,21 @@
+"use client";
+
 import {
   Clock3,
   BadgeCheck,
   Zap,
   MapPinned,
 } from "lucide-react";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function WhyChooseUs() {
-  const items = [
+  const { t } = useLanguage();
+  const itemIcons = [Clock3, BadgeCheck, Zap, MapPinned];
+  const items = t.whyItems.map((item, index) => ({
+    ...item,
+    icon: itemIcons[index],
+  }));
+  /* const items = [
     {
       icon: Clock3,
       title: "24/7 Emergency",
@@ -27,7 +36,7 @@ export default function WhyChooseUs() {
       title: "Orlando Area",
       text: "Serving Central Florida",
     },
-  ];
+  ]; */
 
   return (
     <section className="bg-black py-20">
@@ -37,16 +46,16 @@ export default function WhyChooseUs() {
         <div className="mb-16 text-center">
 
           <p className="text-yellow-400 uppercase tracking-[5px] font-semibold text-sm">
-            WHY CHOOSE US
+            {t.whyEyebrow}
           </p>
 
           <h2 className="mt-3 text-5xl font-extrabold text-white">
-            Why Choose <span className="text-yellow-400">Integral Business</span>
+            {t.whyTitleBefore}{" "}
+            <span className="text-yellow-400">{t.whyTitleHighlight}</span>
           </h2>
 
           <p className="mt-5 max-w-2xl mx-auto text-gray-400 text-lg leading-8">
-            We pride ourselves on delivering fast, reliable and professional
-            towing services with customer satisfaction as our top priority.
+            {t.whyDescription}
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4">

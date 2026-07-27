@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "./context/LanguageContext";
 
 type ContactModalProps = {
   isOpen: boolean;
@@ -11,6 +12,8 @@ export default function ContactModal({
   isOpen,
   onClose,
 }: ContactModalProps) {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -46,25 +49,25 @@ export default function ContactModal({
             }}
           >
             <h2 className="text-3xl font-bold text-yellow-400 text-center">
-              CONTACT US
+              {t.contactUs}
             </h2>
 
             <p className="text-center text-gray-400 mt-2">
-              24/7 Towing & Roadside Assistance
+              {t.heroEyebrow}
             </p>
 
             <div className="flex items-center justify-center gap-2 mt-6">
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
 
               <span className="text-green-400 font-semibold text-sm uppercase tracking-wider">
-                Available Now
+                {t.availableNow}
               </span>
             </div>
 
             <div className="mt-6 space-y-6 text-white">
               <div className="text-center">
                 <p className="text-gray-400 text-sm mb-1">
-                  Phone
+                  {t.phone}
                 </p>
 
                 <a
@@ -77,11 +80,11 @@ export default function ContactModal({
 
               <div className="text-center">
                 <p className="text-gray-400 text-sm">
-                  Location
+                  {t.location}
                 </p>
 
                 <p className="font-semibold">
-                  Orlando, Florida
+                  {t.orlandoFlorida}
                 </p>
               </div>
             </div>
@@ -90,14 +93,14 @@ export default function ContactModal({
               href="tel:+14073606109"
               className="mt-8 block w-full rounded-xl bg-yellow-400 py-4 text-center font-bold text-black hover:bg-yellow-300 hover:scale-105 transition"
             >
-              📞 Call Now
+              📞 {t.callNow}
             </a>
 
             <button
               onClick={onClose}
               className="mt-4 w-full rounded-xl border border-gray-600 py-3 text-gray-300 hover:bg-gray-800 transition"
             >
-              Close
+              {t.close}
             </button>
           </motion.div>
         </motion.div>

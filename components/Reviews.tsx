@@ -1,24 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const reviews = [
-  {
-    name: "Sarah M.",
-    source: "Facebook",
-    text: "Fast service. Arrived in less than 20 minutes and handled my vehicle with great care. Highly recommended.",
-  },
-  {
-    name: "Michael R.",
-    source: "Facebook",
-    text: "Professional, friendly and extremely quick. They made a stressful situation much easier.",
-  },
-  {
-    name: "Jessica T.",
-    source: "Facebook",
-    text: "Excellent communication from start to finish. Honest pricing and outstanding customer service.",
-  },
-];
+import { useLanguage } from "./context/LanguageContext";
 
 function StarIcon() {
   return (
@@ -34,6 +17,8 @@ function StarIcon() {
 
 export default function Reviews() {
   const [current, setCurrent] = useState(0);
+  const { t } = useLanguage();
+  const reviews = t.reviewItems;
 
   useEffect(() => {
     if (reviews.length <= 1) return;
@@ -43,7 +28,7 @@ export default function Reviews() {
     }, 7000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [reviews.length]);
 
   const review = reviews[current];
 
@@ -66,7 +51,7 @@ export default function Reviews() {
       <div className="relative mx-auto flex max-w-7xl flex-col px-6 sm:px-8 lg:px-10">
         <div className="mb-24 flex items-center justify-between gap-6 md:mb-28">
           <span className="text-[10px] font-semibold uppercase tracking-[0.45em] text-yellow-400 sm:text-xs">
-            CUSTOMER REPUTATION
+            {t.reviewsEyebrow}
           </span>
 
           <span className="text-right text-[10px] uppercase tracking-[0.35em] text-white/25 sm:text-xs">
@@ -78,28 +63,25 @@ export default function Reviews() {
           <div>
             <div className="overflow-hidden">
               <h2 className="max-w-5xl text-6xl font-black leading-[0.92] tracking-[-0.055em] text-white md:text-8xl xl:text-[7.8rem]">
-                We'd rather
+                {t.reviewsTitleOne}
               </h2>
 
               <h2 className="mt-2 max-w-5xl text-6xl font-black leading-[0.92] tracking-[-0.055em] text-yellow-400 drop-shadow-[0_0_28px_rgba(250,204,21,0.14)] md:text-8xl xl:text-[7.8rem]">
-                earn your
+                {t.reviewsTitleTwo}
               </h2>
 
               <h2 className="mt-2 max-w-5xl text-6xl font-black leading-[0.92] tracking-[-0.055em] text-white md:text-8xl xl:text-[7.8rem]">
-                words.
+                {t.reviewsTitleThree}
               </h2>
             </div>
 
             <div className="mt-16 max-w-2xl md:mt-20">
               <p className="text-xl font-light leading-[1.85] tracking-[-0.015em] text-white/75 sm:text-2xl">
-                Every review displayed here comes from a real customer.
-                No paid endorsements, no fabricated testimonials — only the
-                experiences of the drivers we've helped across Central Florida.
+                {t.reviewsDescription}
               </p>
 
               <p className="mt-8 max-w-xl text-base leading-8 text-white/40 sm:text-lg">
-                Reputation isn't something you claim. It's something you earn,
-                one service call at a time.
+                {t.reviewsSupportingText}
               </p>
             </div>
           </div>
@@ -124,7 +106,7 @@ export default function Reviews() {
                 <div className="relative z-10 flex min-h-[472px] flex-col">
                   <div className="flex items-center justify-between gap-6">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.45em] text-yellow-400 sm:text-xs">
-                      REAL CUSTOMER REVIEW
+                      {t.realCustomerReview}
                     </p>
 
                     <div className="h-px flex-1 bg-gradient-to-r from-yellow-400/25 to-transparent" />
@@ -202,17 +184,17 @@ export default function Reviews() {
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
 
             <span className="text-center text-[10px] uppercase tracking-[0.45em] text-white/25 sm:text-xs">
-              BUILT ON REAL EXPERIENCES
+              {t.builtOnRealExperiences}
             </span>
 
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
           </div>
 
           <p className="mx-auto mt-10 max-w-4xl text-center text-3xl font-light leading-relaxed tracking-[-0.025em] text-white/85 md:text-4xl">
-            Every tow has a story.
+            {t.reviewsClosingBefore}
             <span className="text-yellow-400 drop-shadow-[0_0_18px_rgba(250,204,21,0.12)]">
               {" "}
-              These are just a few of the people who chose to share theirs.
+              {t.reviewsClosingHighlight}
             </span>
           </p>
         </div>

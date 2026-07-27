@@ -2,10 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,7 +43,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Image
               src="/images/logo.png"
-              alt="Integral Business LLC"
+              alt={t.logoAlt}
               width={60}
               height={60}
             />
@@ -51,7 +54,7 @@ export default function Header() {
               </h1>
 
               <p className="text-gray-400 text-sm">
-                Towing & Roadside Assistance
+                {t.towingRoadsideAssistance}
               </p>
             </div>
           </div>
@@ -62,7 +65,7 @@ export default function Header() {
               href="#home"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
-              Home
+              {t.home}
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
             </a>
 
@@ -70,7 +73,7 @@ export default function Header() {
               href="#services"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
-              Services
+              {t.services}
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
             </a>
 
@@ -78,7 +81,7 @@ export default function Header() {
               href="#fleet"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
-              Fleet
+              {t.fleet}
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
             </a>
 
@@ -86,7 +89,7 @@ export default function Header() {
               href="#contact"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
-              Contact
+              {t.contact}
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
             </a>
           </nav>
@@ -106,7 +109,7 @@ export default function Header() {
 
               <div className="leading-tight text-left">
                 <div className="text-[11px] font-semibold uppercase tracking-[2px] text-gray-700">
-                  Need a Tow?
+                  {t.needTow}
                 </div>
 
                 <div className="text-2xl font-extrabold text-black">
@@ -128,7 +131,7 @@ export default function Header() {
                   <span className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
 
                   <span className="text-sm font-bold uppercase tracking-[3px] text-black">
-                    Available Now
+                    {t.availableNow}
                   </span>
                 </div>
 
@@ -137,19 +140,18 @@ export default function Header() {
                 </h3>
 
                 <p className="mt-2 text-black/80">
-                  24/7 towing and roadside assistance throughout Orlando.
+                  {t.towingAvailableDescription}
                 </p>
               </div>
 
               <div className="space-y-5 p-6">
                 <div>
                   <h4 className="text-sm font-bold uppercase tracking-[2px] text-yellow-400">
-                    Fast Response
+                    {t.fastResponse}
                   </h4>
 
                   <p className="mt-2 leading-7 text-white/70">
-                    Call now for immediate towing, jump starts, lockouts, fuel
-                    delivery, tire changes, and vehicle transport.
+                    {t.fastResponseDescription}
                   </p>
                 </div>
 
@@ -158,7 +160,7 @@ export default function Header() {
                     href="tel:+14073606109"
                     className="rounded-xl bg-yellow-400 py-4 text-center font-bold text-black transition hover:scale-105"
                   >
-                    📞 Call Now
+                    📞 {t.callNow}
                   </a>
 
                   <a
@@ -167,23 +169,32 @@ export default function Header() {
                     rel="noopener noreferrer"
                     className="rounded-xl border border-green-500 py-4 text-center font-bold text-green-400 transition hover:scale-105 hover:bg-green-500/10"
                   >
-                    WhatsApp
+                    {t.whatsapp}
                   </a>
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <div className="font-semibold text-yellow-400">
-                    Why choose us?
+                    {t.whyChooseUs}
                   </div>
 
                   <ul className="mt-3 space-y-2 text-sm text-white/70">
-                    <li>✔ 24/7 Emergency Service</li>
-                    <li>✔ Fast Arrival Times</li>
-                    <li>✔ Licensed & Insured</li>
-                    <li>✔ Professional Equipment</li>
+                    <li>✔ {t.emergencyService}</li>
+                    <li>✔ {t.fastArrivalTimes}</li>
+                    <li>✔ {t.licensedInsured}</li>
+                    <li>✔ {t.professionalEquipment}</li>
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Selector de idioma premium */}
+          <div className="relative hidden md:flex items-center">
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-yellow-400/20 via-yellow-300/10 to-yellow-400/20 blur-md opacity-70 transition-opacity duration-300 hover:opacity-100" />
+
+            <div className="relative rounded-2xl border border-yellow-400/25 bg-white/[0.04] p-1.5 shadow-[0_10px_30px_rgba(0,0,0,.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/50 hover:bg-white/[0.07]">
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

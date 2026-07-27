@@ -1,7 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function Fleet() {
-  const trucks = [
+  const { t } = useLanguage();
+  const truckImages = [
+    "/images/hero-truck.jpeg",
+    "/images/hero-truck2.jpeg",
+    "/images/hero-truck3.jpeg",
+  ];
+  const trucks = t.fleetItems.map((name, index) => ({
+    name,
+    image: truckImages[index],
+  }));
+  /* const trucks = [
     {
       name: "Black Flatbed",
       image: "/images/hero-truck.jpeg",
@@ -14,7 +27,7 @@ export default function Fleet() {
       name: "White Flatbed",
       image: "/images/hero-truck3.jpeg",
     },
-  ];
+  ]; */
 
   return (
     <section
@@ -27,17 +40,16 @@ export default function Fleet() {
         <div className="mb-16 text-center">
 
           <p className="text-yellow-400 uppercase tracking-[5px] font-semibold text-sm">
-            OUR EQUIPMENT
+            {t.fleetEyebrow}
           </p>
 
           <h2 className="mt-3 text-5xl font-extrabold text-white">
-            Our <span className="text-yellow-400">Fleet</span>
+            {t.fleetTitleBefore}{" "}
+            <span className="text-yellow-400">{t.fleetTitleHighlight}</span>
           </h2>
 
           <p className="mt-5 max-w-2xl mx-auto text-gray-400 text-lg leading-8">
-            Our fleet is equipped to handle everything from emergency
-            roadside assistance to heavy-duty towing throughout
-            Orlando and surrounding areas.
+            {t.fleetDescription}
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4">

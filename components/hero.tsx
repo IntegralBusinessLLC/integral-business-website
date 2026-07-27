@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="home"
@@ -9,7 +14,7 @@ export default function Hero() {
       {/* Imagen de fondo */}
       <Image
         src="/images/hero-truck.jpeg"
-        alt="Tow Truck"
+        alt={t.logoAlt}
         fill
         priority
         className="object-cover scale-105"
@@ -33,7 +38,7 @@ export default function Hero() {
               <div className="h-[3px] w-16 rounded-full bg-yellow-400" />
 
               <p className="text-yellow-400 font-bold tracking-[4px] uppercase text-sm drop-shadow-lg">
-                24/7 Towing & Roadside Assistance
+                {t.heroEyebrow}
               </p>
 
             </div>
@@ -41,26 +46,24 @@ export default function Hero() {
             {/* Título */}
             <h1 className="text-6xl md:text-7xl font-extrabold leading-none text-white drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)]">
 
-              Fast,
+              {t.heroTitleFast}
 
               <br />
 
-              Reliable
+              {t.heroTitleReliable}
 
               <br />
 
               <span className="text-yellow-400">
-                Towing
+                {t.heroTitleTowing}
               </span>{" "}
-              in Orlando
+              {t.heroTitleLocation}
 
             </h1>
 
             {/* Descripción */}
             <p className="mt-8 max-w-xl text-xl leading-8 text-gray-200 drop-shadow-lg">
-              Professional towing and roadside assistance available
-              throughout Orlando and surrounding areas,
-              day or night.
+              {t.heroSubtitle}
             </p>
 
             {/* Indicadores */}
@@ -68,17 +71,17 @@ export default function Hero() {
 
               <span className="flex items-center gap-2">
                 <span className="text-yellow-400">✓</span>
-                24/7 Available
+                {t.available247}
               </span>
 
               <span className="flex items-center gap-2">
                 <span className="text-yellow-400">✓</span>
-                Fast Response
+                {t.fastResponse}
               </span>
 
               <span className="flex items-center gap-2">
                 <span className="text-yellow-400">✓</span>
-                Licensed & Insured
+                {t.licensedInsured}
               </span>
 
             </div>
@@ -110,7 +113,7 @@ export default function Hero() {
                 "
               >
                 📞
-                Call Now
+                {t.callNow}
               </a>
 
               <a
@@ -132,7 +135,7 @@ export default function Hero() {
                   hover:text-black
                 "
               >
-                View Services
+                {t.viewServices}
               </a>
 
             </div>

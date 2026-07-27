@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { FaWhatsapp, FaFacebookF } from "react-icons/fa";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function FloatingButtons() {
   const [visible, setVisible] = useState(false);
   const [hover, setHover] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 250);
@@ -25,10 +27,12 @@ export default function FloatingButtons() {
       <div className="flex items-center gap-4">
         {/* WhatsApp */}
         <a
-          href="https://wa.me/14073606109?text=Hi!%20I%20need%20a%20tow%20truck."
+          href={`https://wa.me/14073606109?text=${encodeURIComponent(
+            t.whatsappMessage
+          )}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="WhatsApp"
+          aria-label={t.whatsapp}
           className="relative flex items-center"
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -37,10 +41,10 @@ export default function FloatingButtons() {
             <div className="absolute right-20 flex w-56 items-center rounded-2xl border border-yellow-400/40 bg-[#101010]/95 px-5 py-3 shadow-[0_0_35px_rgba(250,204,21,.16)] backdrop-blur-xl animate-[fadeIn_.25s_ease]">
               <div>
                 <p className="text-sm font-semibold text-white">
-                  Need a tow?
+                  {t.needTow}
                 </p>
                 <p className="text-xs text-white/55">
-                  Chat on WhatsApp
+                  {t.chatOnWhatsapp}
                 </p>
               </div>
             </div>

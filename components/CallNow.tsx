@@ -2,11 +2,13 @@
 
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function CallNow() {
   const formRef = useRef<HTMLFormElement>(null);
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
+  const { t } = useLanguage();
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,11 +26,11 @@ export default function CallNow() {
         "XyEb8v-l9r2i_q1G8"
       );
 
-      setStatus("✅ Request sent successfully!");
+      setStatus(t.requestSent);
       formRef.current.reset();
     } catch (err) {
       console.error(err);
-      setStatus("❌ Failed to send request. Please call us directly.");
+      setStatus(t.requestFailed);
     } finally {
       setSending(false);
     }
@@ -44,16 +46,15 @@ export default function CallNow() {
 
           <div className="flex flex-col justify-center">
             <h2 className="text-yellow-400 text-lg font-semibold uppercase tracking-[4px]">
-              Need a Tow?
+              {t.contactEyebrow}
             </h2>
 
             <h3 className="mt-4 text-5xl font-extrabold text-white">
-              We're Ready to Help
+              {t.contactTitle}
             </h3>
 
             <p className="mt-5 text-lg text-gray-400 leading-8">
-              Fast, reliable towing and roadside assistance throughout Orlando
-              and the surrounding areas.
+              {t.contactDescription}
             </p>
 
             <p className="mt-8 text-5xl font-extrabold text-yellow-400">
@@ -64,13 +65,13 @@ export default function CallNow() {
               href="tel:+14073606109"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-gradient-to-r from-yellow-300 to-yellow-400 px-8 py-4 text-lg font-bold text-black shadow-lg shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-1 hover:scale-105"
             >
-              📞 Call Now
+              📞 {t.callNow}
             </a>
           </div>
 
           <div>
             <h3 className="text-3xl font-bold text-white mb-8">
-              Request Assistance
+              {t.requestAssistance}
             </h3>
 
             <form ref={formRef} onSubmit={sendEmail} className="space-y-5">
@@ -79,7 +80,7 @@ export default function CallNow() {
                 type="text"
                 name="name"
                 required
-                placeholder="Full Name"
+                placeholder={t.fullName}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
@@ -87,14 +88,14 @@ export default function CallNow() {
                 type="tel"
                 name="phone"
                 required
-                placeholder="Phone Number"
+                placeholder={t.phoneNumber}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
               <input
                 type="email"
                 name="email"
-                placeholder="Email (Optional)"
+                placeholder={t.emailOptional}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
@@ -102,7 +103,7 @@ export default function CallNow() {
                 rows={5}
                 name="message"
                 required
-                placeholder="Tell us what happened..."
+                placeholder={t.tellUsWhatHappened}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none resize-none focus:border-yellow-400"
               />
 
@@ -111,7 +112,7 @@ export default function CallNow() {
                 disabled={sending}
                 className="w-full rounded-xl bg-gradient-to-r from-yellow-300 to-yellow-400 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-[1.02] disabled:opacity-60"
               >
-                {sending ? "Sending..." : "Send Request"}
+                {sending ? t.sending : t.sendRequest}
               </button>
 
               {status && (

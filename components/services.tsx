@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
+import { useLanguage } from "./context/LanguageContext";
 import {
   Truck,
   Wrench,
@@ -13,9 +14,11 @@ import {
 } from "lucide-react";
 
 export default function Services() {
-  const services = [
+  const { t } = useLanguage();
+
+  const baseServices = [
     {
-      title: "flatbed Towing",
+      title: "Flatbed Towing",
       icon: Truck,
       image: "/images/flatbed.jpg",
       description:
@@ -58,7 +61,15 @@ export default function Services() {
     },
   ];
 
-  const [activeService, setActiveService] = useState(services[0]);
+  const services = baseServices.map((service, index) => ({
+    ...service,
+    title: t?.serviceItems?.[index]?.title ?? service.title,
+    description:
+      t?.serviceItems?.[index]?.description ?? service.description,
+  }));
+
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const activeService = services[activeServiceIndex];
 
   return (
     <AnimatedSection>
@@ -69,16 +80,18 @@ export default function Services() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-16 text-center">
             <p className="text-yellow-400 uppercase tracking-[5px] font-semibold text-sm">
-              WHAT WE OFFER
+              {t.servicesEyebrow}
             </p>
 
             <h2 className="mt-3 text-5xl font-extrabold text-white">
-              Our <span className="text-yellow-400">Services</span>
+              {t.servicesTitleBefore}{" "}
+              <span className="text-yellow-400">
+                {t.servicesTitleHighlight}
+              </span>
             </h2>
 
             <p className="mt-5 max-w-2xl mx-auto text-gray-400 text-lg leading-8">
-              Professional towing and roadside assistance available 24 hours a
-              day, 7 days a week throughout Orlando and the surrounding areas.
+              {t.servicesDescription}
             </p>
 
             <div className="mt-8 flex items-center justify-center gap-4">
@@ -112,15 +125,15 @@ export default function Services() {
           </div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const Icon = service.icon;
 
               return (
                 <div
                   key={service.title}
-                  onMouseEnter={() => setActiveService(service)}
+                  onMouseEnter={() => setActiveServiceIndex(index)}
                   className={`group rounded-2xl border p-7 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-xl hover:shadow-yellow-500/20 ${
-                    activeService.title === service.title
+                    activeServiceIndex === index
                       ? "border-yellow-400 bg-[#171717]"
                       : "border-yellow-500/30 bg-[#111]"
                   }`}
