@@ -13,8 +13,6 @@ export const size = {
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
-  const logo = new URL("../public/images/logo.png", import.meta.url).toString();
-
   return new ImageResponse(
     (
       <div
@@ -25,9 +23,9 @@ export default function OpenGraphImage() {
           position: "relative",
           overflow: "hidden",
           background:
-            "radial-gradient(circle at 82% 18%, rgba(250,204,21,0.18), transparent 30%), linear-gradient(135deg, #050505 0%, #101010 55%, #050505 100%)",
+            "radial-gradient(circle at 84% 18%, rgba(250,204,21,0.22), transparent 27%), linear-gradient(135deg, #050505 0%, #121212 55%, #050505 100%)",
           color: "white",
-          padding: "62px 76px",
+          padding: "64px 78px",
         }}
       >
         <div
@@ -36,7 +34,7 @@ export default function OpenGraphImage() {
             top: 0,
             left: 0,
             width: "100%",
-            height: "14px",
+            height: "15px",
             display: "flex",
             background: "#facc15",
           }}
@@ -45,26 +43,26 @@ export default function OpenGraphImage() {
         <div
           style={{
             position: "absolute",
-            right: "-130px",
-            bottom: "-160px",
-            width: "560px",
-            height: "560px",
+            right: "-125px",
+            bottom: "-125px",
+            width: "600px",
+            height: "600px",
             display: "flex",
             borderRadius: "999px",
-            border: "2px solid rgba(250,204,21,0.16)",
+            border: "3px solid rgba(250,204,21,0.14)",
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            right: "-45px",
-            bottom: "-75px",
+            right: "-30px",
+            bottom: "-30px",
             width: "390px",
             height: "390px",
             display: "flex",
             borderRadius: "999px",
-            border: "2px solid rgba(250,204,21,0.12)",
+            border: "3px solid rgba(250,204,21,0.18)",
           }}
         />
 
@@ -72,110 +70,75 @@ export default function OpenGraphImage() {
           style={{
             width: "100%",
             display: "flex",
-            alignItems: "center",
-            gap: "48px",
+            flexDirection: "column",
+            justifyContent: "center",
           }}
         >
           <div
             style={{
-              width: "290px",
-              height: "290px",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "34px",
-              background: "rgba(255,255,255,0.96)",
-              border: "5px solid #facc15",
-              boxShadow: "0 0 48px rgba(250,204,21,0.30)",
-              padding: "18px",
+              color: "#facc15",
+              fontSize: "25px",
+              fontWeight: 800,
+              letterSpacing: "7px",
             }}
           >
-            <img
-              src={logo}
-              width="250"
-              height="250"
-              alt="Integral Business LLC logo"
-              style={{
-                objectFit: "contain",
-              }}
-            />
+            24/7 TOWING & ROADSIDE ASSISTANCE
           </div>
 
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
+              marginTop: "30px",
+              fontSize: "88px",
+              lineHeight: 1,
+              fontWeight: 800,
+              letterSpacing: "-4px",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                color: "#facc15",
-                fontSize: "24px",
-                fontWeight: 700,
-                letterSpacing: "7px",
-                textTransform: "uppercase",
-              }}
-            >
-              24/7 TOWING & ROADSIDE ASSISTANCE
-            </div>
+            Integral Business
+          </div>
 
-            <div
-              style={{
-                display: "flex",
-                marginTop: "18px",
-                fontSize: "68px",
-                lineHeight: 1,
-                fontWeight: 800,
-                letterSpacing: "-3px",
-              }}
-            >
-              Integral Business
-            </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "8px",
+              color: "#facc15",
+              fontSize: "88px",
+              lineHeight: 1,
+              fontWeight: 800,
+              letterSpacing: "-4px",
+            }}
+          >
+            LLC
+          </div>
 
-            <div
-              style={{
-                display: "flex",
-                marginTop: "10px",
-                color: "#facc15",
-                fontSize: "68px",
-                lineHeight: 1,
-                fontWeight: 800,
-                letterSpacing: "-3px",
-              }}
-            >
-              LLC
-            </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "34px",
+              color: "rgba(255,255,255,0.76)",
+              fontSize: "32px",
+              fontWeight: 500,
+            }}
+          >
+            Fast, reliable towing and roadside assistance in Orlando.
+          </div>
 
-            <div
-              style={{
-                display: "flex",
-                marginTop: "30px",
-                color: "rgba(255,255,255,0.76)",
-                fontSize: "30px",
-                fontWeight: 500,
-              }}
-            >
-              Professional Towing in Orlando
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "30px",
-                color: "#050505",
-                background: "#facc15",
-                borderRadius: "999px",
-                padding: "15px 28px",
-                fontSize: "34px",
-                fontWeight: 800,
-              }}
-            >
-              📞 (407) 360-6109
-            </div>
+          <div
+            style={{
+              display: "flex",
+              alignSelf: "flex-start",
+              marginTop: "34px",
+              color: "#050505",
+              background: "#facc15",
+              borderRadius: "999px",
+              padding: "17px 30px",
+              fontSize: "36px",
+              fontWeight: 800,
+            }}
+          >
+            CALL NOW · (407) 360-6109
           </div>
         </div>
       </div>
