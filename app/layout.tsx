@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Integral Business LLC",
     description:
       "Professional Towing & Roadside Assistance in Orlando. Fast, reliable service available 24/7.",
-    url: "https://integralbusiness-llc.com",
+    url: "https://integralbusiness-llc.com/opengraph-image",
     siteName: "Integral Business LLC",
     locale: "en_US",
     type: "website",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "Integral Business LLC",
     description:
       "Professional Towing & Roadside Assistance in Orlando. Fast, reliable service available 24/7.",
-    images: ["https://integralbusiness-llc.com/images/logo.png"],
+    images: ["https://integralbusiness-llc.com/opengraph-image"],
   },
 };
 
