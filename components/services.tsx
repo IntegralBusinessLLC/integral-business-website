@@ -75,8 +75,7 @@ export default function Services() {
     <AnimatedSection>
       <section
         id="services"
-        className="bg-[#0b0b0b] py-20 border-t border-yellow-500/20"
-      >
+className="bg-[#080808] py-20 border-t border-yellow-500/20"      >
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-16 text-center">
             <p className="text-yellow-400 uppercase tracking-[5px] font-semibold text-sm">

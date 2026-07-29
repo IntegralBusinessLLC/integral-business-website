@@ -6,11 +6,10 @@ import { useLanguage } from "./context/LanguageContext";
 export default function Hero() {
   const { t } = useLanguage();
 
-  return (
-    <section
-      id="home"
-      className="relative h-[calc(100svh-5rem)] min-h-[590px] max-h-[820px] w-full overflow-hidden scroll-mt-24 sm:min-h-[620px] lg:min-h-[680px]"
-    >
+ return (
+  <section
+    id="home"
+className="relative h-[calc(100svh-5rem)] min-h-[590px] max-h-[820px] w-full overflow-hidden scroll-mt-24 sm:min-h-[620px] lg:min-h-[680px]"  >
       {/* Imagen de fondo */}
       <Image
         src="/images/hero-truck.jpeg"

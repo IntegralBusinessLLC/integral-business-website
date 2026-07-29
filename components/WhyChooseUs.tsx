@@ -39,7 +39,7 @@ export default function WhyChooseUs() {
   ]; */
 
   return (
-    <section className="bg-black py-20">
+    <section className="bg-[#080808] py-20">
       <div className="max-w-7xl mx-auto px-8">
 
         {/* Encabezado */}
