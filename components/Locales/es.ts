@@ -1,9 +1,9 @@
 export const es = {
   heroEyebrow: "Grúas y Asistencia en Carretera 24/7",
-  heroTitleFast: "Rápido,",
-  heroTitleReliable: "Confiable",
-  heroTitleTowing: "Servicio de Grúas",
-  heroTitleLocation: "en Orlando",
+  heroTitleFast: "Rápidas.",
+heroTitleReliable: "Confiables.",
+heroTitleTowing: "Grúas",
+heroTitleLocation: "en Orlando",
   heroTitle: "Servicio Profesional de Grúas en Orlando",
   heroSubtitle:
     "Servicio profesional de grúas y asistencia en carretera disponible en Orlando y sus alrededores, de día o de noche.",
