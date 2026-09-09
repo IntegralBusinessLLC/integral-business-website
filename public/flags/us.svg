@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" role="img" aria-label="United States">
+  <rect width="28" height="20" fill="#fff"/>
+  <g fill="#b22234">
+    <rect width="28" height="1.54"/><rect y="3.08" width="28" height="1.54"/>
+    <rect y="6.16" width="28" height="1.54"/><rect y="9.24" width="28" height="1.54"/>
+    <rect y="12.32" width="28" height="1.54"/><rect y="15.4" width="28" height="1.54"/>
+    <rect y="18.48" width="28" height="1.52"/>
+  </g>
+  <rect width="12" height="10.78" fill="#3c3b6e"/>
+  <g fill="#fff">
+    <circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/>
+    <circle cx="3.5" cy="4.5" r=".55"/><circle cx="6.5" cy="4.5" r=".55"/><circle cx="9.5" cy="4.5" r=".55"/>
+    <circle cx="2" cy="7" r=".55"/><circle cx="5" cy="7" r=".55"/><circle cx="8" cy="7" r=".55"/><circle cx="11" cy="7" r=".55"/>
+    <circle cx="3.5" cy="9.3" r=".55"/><circle cx="6.5" cy="9.3" r=".55"/><circle cx="9.5" cy="9.3" r=".55"/>
+  </g>
+</svg>

@@ -79,7 +79,7 @@ export default function ServiceAreas() {
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -107,7 +107,7 @@ export default function ServiceAreas() {
 
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, x: -28 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65 }}
@@ -141,7 +141,7 @@ export default function ServiceAreas() {
                 .map((city, index) => (
                   <motion.div
                     key={city.name}
-                    initial={{ opacity: 0, scale: 0.6 }}
+                    initial={false}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: index * 0.06 }}
@@ -173,7 +173,7 @@ export default function ServiceAreas() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65 }}

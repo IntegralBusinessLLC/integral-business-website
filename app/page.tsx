@@ -7,12 +7,14 @@ import ServiceAreas from "@/components/ServiceAreas";
 import CallNow from "../components/CallNow";
 import Reviews from "@/components/Reviews";
 import FloatingButtons from "@/components/FloatingButtons";
+import JunkCarCash from "@/components/JunkCarCash";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
       <Header />
       <Hero />
+      <JunkCarCash />
       <Services />
       <WhyChooseUs />
       <Fleet />

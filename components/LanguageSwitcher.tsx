@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useLanguage, Language } from "./context/LanguageContext";
 
 const languages: {
@@ -10,17 +11,17 @@ const languages: {
 }[] = [
   {
     code: "en",
-    flag: "https://flagcdn.com/w80/us.png",
+    flag: "/flags/us.svg",
     label: "English",
   },
   {
     code: "es",
-    flag: "https://flagcdn.com/w80/es.png",
+    flag: "/flags/es.svg",
     label: "Español",
   },
   {
     code: "pt",
-    flag: "https://flagcdn.com/w80/br.png",
+    flag: "/flags/br.svg",
     label: "Português",
   },
 ];
@@ -49,16 +50,18 @@ export default function LanguageSwitcher() {
                 : "opacity-60 hover:bg-white/10 hover:opacity-100"
             }`}
           >
-            <img
+            <Image
               src={item.flag}
               alt=""
+              width={28}
+              height={20}
               className="h-5 w-7 rounded-[3px] object-cover shadow-sm"
             />
 
             {active && (
               <motion.span
                 layoutId="active-language-flag"
-                className="absolute inset-0 rounded-full border border-yellow-100/70"
+                className="pointer-events-none absolute inset-0 rounded-full border border-yellow-100/70"
                 transition={{ type: "spring", stiffness: 380, damping: 28 }}
               />
             )}

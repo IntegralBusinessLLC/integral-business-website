@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur border-b border-yellow-500/40 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Logo */}
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <Image
@@ -73,12 +73,20 @@ export default function Header() {
           </div>
 
           {/* Navegación de computadora */}
-          <nav className="hidden md:flex items-center gap-12 text-white">
+          <nav className="hidden items-center gap-12 text-white xl:flex">
             <a
               href="#home"
               className="group relative font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-400"
             >
               {t.home}
+              <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+            </a>
+
+            <a
+              href="#sell-your-car"
+              className="group relative font-semibold tracking-wide text-yellow-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-yellow-300"
+            >
+              {t.sellJunkCarNav}
               <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
             </a>
 
@@ -108,7 +116,7 @@ export default function Header() {
           </nav>
 
           {/* Premium CTA de computadora */}
-          <div ref={panelRef} className="relative hidden md:block">
+          <div ref={panelRef} className="relative hidden xl:block">
             <button
               type="button"
               onClick={() => setOpen((current) => !current)}
@@ -203,7 +211,7 @@ export default function Header() {
           </div>
 
           {/* Selector de idioma premium de computadora */}
-          <div className="relative hidden md:flex items-center">
+          <div className="relative hidden items-center xl:flex">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-yellow-400/20 via-yellow-300/10 to-yellow-400/20 blur-md opacity-70 transition-opacity duration-300 hover:opacity-100" />
 
             <div className="relative rounded-2xl border border-yellow-400/25 bg-white/[0.04] p-1.5 shadow-[0_10px_30px_rgba(0,0,0,.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/50 hover:bg-white/[0.07]">
@@ -214,7 +222,7 @@ export default function Header() {
           {/* Botones exclusivos de teléfono */}
           <div
             ref={mobileMenuRef}
-            className="relative flex items-center gap-2 md:hidden"
+            className="relative flex items-center gap-2 xl:hidden"
           >
             <a
               href="tel:+14073606109"
@@ -276,6 +284,15 @@ export default function Header() {
                 >
                   {t.home}
                   <span className="text-yellow-400">→</span>
+                </a>
+
+                <a
+                  href="#sell-your-car"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between rounded-2xl px-5 py-4 text-base font-bold text-yellow-400 transition-colors hover:bg-white/5 hover:text-yellow-300"
+                >
+                  {t.sellJunkCarNav}
+                  <span>→</span>
                 </a>
 
                 <a

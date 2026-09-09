@@ -9,7 +9,7 @@ export default function Hero() {
  return (
   <section
     id="home"
-className="relative h-[calc(100svh-5rem)] min-h-[590px] max-h-[820px] w-full overflow-hidden scroll-mt-24 sm:min-h-[620px] lg:min-h-[680px]"  >
+className="relative h-[calc(100svh-5rem)] min-h-[590px] w-full overflow-hidden scroll-mt-24 sm:min-h-[620px] lg:min-h-[680px]"  >
       {/* Imagen de fondo */}
       <Image
         src="/images/hero-truck.jpeg"
