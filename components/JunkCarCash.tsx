@@ -4,11 +4,13 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import emailjs from "@emailjs/browser";
 import PrivacyNotice from "./PrivacyNotice";
-import { BadgeDollarSign, Camera, Car, FileCheck2, MapPin, Truck } from "lucide-react";
+import { ArrowUpRight, BadgeDollarSign, Camera, Car, FileCheck2, Truck } from "lucide-react";
 import { useLanguage } from "./context/LanguageContext";
 
 const inputClassName =
-  "w-full rounded-xl border border-white/15 bg-[#181818] px-4 py-3.5 text-white outline-none transition placeholder:text-white/35 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/15";
+  "min-w-0 w-full rounded-xl border border-slate-300 bg-white px-3 py-3.5 text-sm text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/30 sm:px-4 sm:text-base";
+
+const labelClassName = "mb-2 block text-sm font-semibold leading-6 text-slate-700 sm:text-base";
 
 export default function JunkCarCash() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -26,6 +28,12 @@ export default function JunkCarCash() {
     const titleConfirmed = formData.get("title_confirmed") === "yes";
     const completeConfirmed = formData.get("complete_confirmed") === "yes";
 
+    if (formData.get("contact_consent") !== "yes") {
+      setSent(false);
+      setStatus(t.junkContactConsentRequired);
+      return;
+    }
+
     if (!titleConfirmed || !completeConfirmed) {
       setSent(false);
       setStatus(t.junkEligibilityMessage);
@@ -38,12 +46,15 @@ export default function JunkCarCash() {
 
     const message = [
       "CASH FOR JUNK CAR LEAD",
+      `Name: ${formData.get("name")}`,
+      `Phone: ${formData.get("phone")}`,
+      `Email: ${formData.get("email") || "Not provided"}`,
       `Vehicle: ${formData.get("year")} ${formData.get("make")} ${formData.get("model")}`,
-      `Condition: ${formData.get("condition")}`,
+      `Runs: ${formData.get("runs")}`,
       `Pickup location: ${formData.get("pickup_location")}`,
-      `Requested cash: $${formData.get("asking_price")}`,
       "Title in seller's name: Yes",
       "Vehicle complete: Yes",
+      "Permission to contact about this request: Yes",
       `Notes: ${formData.get("notes") || "None"}`,
       "Please contact this seller and request photos of the vehicle, VIN and title.",
     ].join("\n");
@@ -78,8 +89,8 @@ export default function JunkCarCash() {
         className="scroll-mt-24 overflow-hidden border-y border-yellow-400/20 bg-[#050505] py-24"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div>
+          <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div className="lg:sticky lg:top-28">
               <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
                 {t.junkEyebrow}
               </p>
@@ -136,75 +147,102 @@ export default function JunkCarCash() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-yellow-400/25 bg-[#101010] p-6 shadow-[0_24px_80px_rgba(250,204,21,.08)] sm:p-9">
+            <div className="rounded-[2rem] border border-slate-200 bg-[#f4f7fa] p-5 shadow-[0_24px_80px_rgba(0,0,0,.3)] sm:p-9">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow-400 text-black">
                   <Car className="h-7 w-7" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-extrabold text-white">{t.junkFormTitle}</h3>
-                  <p className="mt-2 leading-6 text-slate-400">{t.junkFormDescription}</p>
+                  <h3 className="text-2xl font-extrabold text-slate-950 sm:text-3xl">{t.junkFormTitle}</h3>
+                  <p className="mt-2 leading-6 text-slate-600">{t.junkFormDescription}</p>
                 </div>
               </div>
 
-              <form ref={formRef} method="post" onSubmit={submitLead} className="mt-8 space-y-5">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <input className={inputClassName} name="name" placeholder={t.fullName} aria-label={t.fullName} required />
-                  <input className={inputClassName} name="phone" type="tel" placeholder={t.phoneNumber} aria-label={t.phoneNumber} required />
-                </div>
+              <form ref={formRef} method="post" onSubmit={submitLead} className="mt-8 space-y-7">
+                <fieldset>
+                  <legend className="mb-5 text-lg font-bold text-slate-950">{t.junkContactHeading}</legend>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-5">
+                    <label className="min-w-0">
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.fullName} <span aria-hidden="true">*</span></span>
+                      <input className={inputClassName} name="name" autoComplete="name" required />
+                    </label>
+                    <label className="min-w-0">
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.phoneNumber} <span aria-hidden="true">*</span></span>
+                      <input className={inputClassName} name="phone" type="tel" autoComplete="tel" placeholder="(407) 555-0123" required />
+                    </label>
+                    <label className="min-w-0">
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.emailOptional}</span>
+                      <input className={inputClassName} name="email" type="email" autoComplete="email" />
+                    </label>
+                    <label className="min-w-0">
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.junkPickupLocation} <span aria-hidden="true">*</span></span>
+                      <input className={inputClassName} name="pickup_location" placeholder={t.junkLocationPlaceholder} required />
+                    </label>
+                  </div>
+                </fieldset>
 
-                <input className={inputClassName} name="email" type="email" placeholder={t.emailOptional} aria-label={t.emailOptional} />
+                <fieldset className="border-t border-slate-200 pt-7">
+                  <legend className="float-left mb-6 w-full text-2xl font-extrabold text-slate-950">{t.junkVehicleHeading}</legend>
+                  <div className="clear-both space-y-5">
+                    <label className="block">
+                      <span className={labelClassName}>{t.junkYear} <span aria-hidden="true">*</span></span>
+                      <input className={inputClassName} name="year" inputMode="numeric" placeholder="2015" required />
+                    </label>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-5">
+                      <label className="min-w-0">
+                        <span className={labelClassName}>{t.junkMake} <span aria-hidden="true">*</span></span>
+                        <input className={inputClassName} name="make" placeholder="Ford" required />
+                      </label>
+                      <label className="min-w-0">
+                        <span className={labelClassName}>{t.junkModel} <span aria-hidden="true">*</span></span>
+                        <input className={inputClassName} name="model" placeholder="Explorer" required />
+                      </label>
+                      <label className="grid min-w-0 grid-rows-[1fr_auto]">
+                        <span className={labelClassName}>{t.junkRunsQuestion} <span aria-hidden="true">*</span></span>
+                        <select className={inputClassName} name="runs" required defaultValue="">
+                          <option value="" disabled>{t.junkChoose}</option>
+                          <option value="yes">{t.junkYes}</option>
+                          <option value="no">{t.junkNo}</option>
+                          <option value="unknown">{t.junkNotSure}</option>
+                        </select>
+                      </label>
+                      <label className="grid min-w-0 grid-rows-[1fr_auto]">
+                        <span className={labelClassName}>{t.junkTitleShortQuestion} <span aria-hidden="true">*</span></span>
+                        <select className={inputClassName} name="title_confirmed" required defaultValue="">
+                          <option value="" disabled>{t.junkChoose}</option>
+                          <option value="yes">{t.junkYes}</option>
+                          <option value="no">{t.junkNo}</option>
+                        </select>
+                      </label>
+                    </div>
+                    <label className="block">
+                      <span className={labelClassName}>{t.junkCompleteQuestion} <span aria-hidden="true">*</span></span>
+                      <select className={inputClassName} name="complete_confirmed" required defaultValue="">
+                        <option value="" disabled>{t.junkChoose}</option>
+                        <option value="yes">{t.junkYes}</option>
+                        <option value="no">{t.junkNo}</option>
+                      </select>
+                    </label>
+                  </div>
+                </fieldset>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <input className={inputClassName} name="year" inputMode="numeric" placeholder={t.junkYear} aria-label={t.junkYear} required />
-                  <input className={inputClassName} name="make" placeholder={t.junkMake} aria-label={t.junkMake} required />
-                  <input className={inputClassName} name="model" placeholder={t.junkModel} aria-label={t.junkModel} required />
-                </div>
+                <label className="block">
+                  <span className={labelClassName}>{t.junkNotes}</span>
+                  <textarea className={`${inputClassName} resize-y`} name="notes" rows={4} placeholder={t.junkNotesPlaceholder} />
+                </label>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="relative">
-                    <MapPin className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-yellow-400" />
-                    <input className={`${inputClassName} pl-12`} name="pickup_location" placeholder={t.junkPickupLocation} aria-label={t.junkPickupLocation} required />
-                  </label>
-                  <input className={inputClassName} name="asking_price" type="number" min="0" step="1" placeholder={t.junkAskingPrice} aria-label={t.junkAskingPrice} required />
-                </div>
-
-                <select className={inputClassName} name="condition" aria-label={t.junkCondition} required defaultValue="">
-                  <option value="" disabled>{t.junkCondition}</option>
-                  <option value={t.junkConditionNotRunning}>{t.junkConditionNotRunning}</option>
-                  <option value={t.junkConditionAccident}>{t.junkConditionAccident}</option>
-                  <option value={t.junkConditionOther}>{t.junkConditionOther}</option>
-                </select>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="rounded-2xl border border-white/10 bg-black/25 p-4 text-sm text-white">
-                    <span className="block font-bold">{t.junkTitleQuestion}</span>
-                    <select className={`${inputClassName} mt-3`} name="title_confirmed" required defaultValue="">
-                      <option value="" disabled>{t.junkChoose}</option>
-                      <option value="yes">{t.junkYes}</option>
-                      <option value="no">{t.junkNo}</option>
-                    </select>
-                  </label>
-
-                  <label className="rounded-2xl border border-white/10 bg-black/25 p-4 text-sm text-white">
-                    <span className="block font-bold">{t.junkCompleteQuestion}</span>
-                    <select className={`${inputClassName} mt-3`} name="complete_confirmed" required defaultValue="">
-                      <option value="" disabled>{t.junkChoose}</option>
-                      <option value="yes">{t.junkYes}</option>
-                      <option value="no">{t.junkNo}</option>
-                    </select>
-                  </label>
-                </div>
-
-                <textarea className={`${inputClassName} resize-none`} name="notes" rows={4} placeholder={t.junkNotes} aria-label={t.junkNotes} />
+                <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-700 sm:text-base">
+                  <input className="mt-1 h-5 w-5 shrink-0 accent-yellow-500" type="checkbox" name="contact_consent" value="yes" required />
+                  <span>{t.junkContactConsent}</span>
+                </label>
 
                 <button
                   type="submit"
                   disabled={sending}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-yellow-300 to-yellow-400 px-6 py-4 text-lg font-extrabold text-black shadow-lg shadow-yellow-500/20 transition hover:-translate-y-0.5 hover:shadow-yellow-400/35 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex w-full items-center justify-between gap-4 rounded-xl bg-yellow-400 px-5 py-4 text-base font-extrabold text-black shadow-lg shadow-yellow-500/15 transition hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:text-lg"
                 >
-                  <BadgeDollarSign className="h-6 w-6" />
-                  {sending ? t.junkSending : t.junkSubmit}
+                  <span>{sending ? t.junkSending : t.junkSubmit}</span>
+                  <ArrowUpRight className="h-6 w-6 shrink-0" />
                 </button>
 
                 {status && (
@@ -212,8 +250,8 @@ export default function JunkCarCash() {
                     aria-live="polite"
                     className={`rounded-xl border px-4 py-3 text-center text-sm font-semibold ${
                       sent
-                        ? "border-green-500/30 bg-green-500/10 text-green-300"
-                        : "border-yellow-400/30 bg-yellow-400/10 text-yellow-200"
+                        ? "border-green-600/30 bg-green-50 text-green-800"
+                        : "border-amber-500/30 bg-amber-50 text-amber-900"
                     }`}
                   >
                     {status}
@@ -225,14 +263,15 @@ export default function JunkCarCash() {
                     href={`https://wa.me/14073606109?text=${encodeURIComponent(t.junkWhatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-green-500/50 bg-green-500/10 px-6 py-3.5 font-bold text-green-300 transition hover:bg-green-500/15"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-green-600/30 bg-green-50 px-6 py-3.5 font-bold text-green-800 transition hover:bg-green-100"
                   >
                     <Camera className="h-5 w-5" />
                     {t.junkWhatsappPhotos}
                   </a>
                 )}
-                <PrivacyNotice />
-                <noscript><p className="text-sm text-yellow-300">{t.formNeedsJavascript}</p></noscript>
+                <p className="text-sm leading-6 text-slate-600">{t.junkFormDisclaimer}</p>
+                <PrivacyNotice tone="light" />
+                <noscript><p className="text-sm text-amber-900">{t.formNeedsJavascript}</p></noscript>
               </form>
             </div>
           </div>

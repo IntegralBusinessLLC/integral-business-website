@@ -19,11 +19,28 @@ export default function CallNow() {
     setSending(true);
     setStatus("");
 
+    const formData = new FormData(formRef.current);
+    const name = String(formData.get("name") ?? "");
+    const phone = String(formData.get("phone") ?? "");
+    const email = String(formData.get("email") ?? "");
+
     try {
-      await emailjs.sendForm(
+      await emailjs.send(
         "service_mj8tzmq",
         "template_nvij8ik",
-        formRef.current,
+        {
+          name,
+          phone,
+          email,
+          message: [
+            "TOWING AND ROADSIDE ASSISTANCE REQUEST",
+            `Name: ${name}`,
+            `Phone: ${phone}`,
+            `Email: ${email || "Not provided"}`,
+            "",
+            String(formData.get("message") ?? ""),
+          ].join("\n"),
+        },
         "XyEb8v-l9r2i_q1G8"
       );
 
