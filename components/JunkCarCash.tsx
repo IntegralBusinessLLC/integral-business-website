@@ -8,9 +8,9 @@ import { ArrowUpRight, BadgeDollarSign, Camera, Car, FileCheck2, Truck } from "l
 import { useLanguage } from "./context/LanguageContext";
 
 const inputClassName =
-  "min-w-0 w-full rounded-xl border border-slate-300 bg-white px-3 py-3.5 text-sm text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/30 sm:px-4 sm:text-base";
+  "min-w-0 w-full rounded-xl border border-white/10 bg-[#0c0c0c] px-3 py-3.5 text-sm text-white shadow-[inset_0_1px_3px_rgba(0,0,0,.35)] outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-yellow-400/70 focus:bg-[#111] focus:ring-2 focus:ring-yellow-400/10 [color-scheme:dark] sm:px-4 sm:text-base";
 
-const labelClassName = "mb-2 block text-sm font-semibold leading-6 text-slate-700 sm:text-base";
+const labelClassName = "mb-2 block text-sm font-medium leading-6 text-slate-300 sm:text-base";
 
 export default function JunkCarCash() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -147,27 +147,31 @@ export default function JunkCarCash() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200 bg-[#f4f7fa] p-5 shadow-[0_24px_80px_rgba(0,0,0,.3)] sm:p-9">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow-400 text-black">
+            <div className="relative isolate overflow-hidden rounded-[2rem] border border-yellow-400/20 bg-[radial-gradient(ellipse_at_top_right,rgba(250,204,21,.06),transparent_55%),linear-gradient(145deg,#191919,#101010_45%,#090909)] p-5 shadow-[0_32px_100px_rgba(0,0,0,.6),0_0_45px_rgba(250,204,21,.035),inset_0_1px_0_rgba(255,255,255,.04)] sm:p-9">
+              <div aria-hidden="true" className="pointer-events-none absolute left-9 right-9 top-0 h-px bg-gradient-to-r from-transparent via-yellow-300/60 to-transparent" />
+              <div className="flex items-start gap-4 border-b border-white/10 pb-7">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-400 shadow-[0_0_24px_rgba(250,204,21,.08)]">
                   <Car className="h-7 w-7" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-extrabold text-slate-950 sm:text-3xl">{t.junkFormTitle}</h3>
-                  <p className="mt-2 leading-6 text-slate-600">{t.junkFormDescription}</p>
+                  <h3 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{t.junkFormTitle}</h3>
+                  <p className="mt-2 leading-6 text-slate-400">{t.junkFormDescription}</p>
                 </div>
               </div>
 
               <form ref={formRef} method="post" onSubmit={submitLead} className="mt-8 space-y-7">
                 <fieldset>
-                  <legend className="mb-5 text-lg font-bold text-slate-950">{t.junkContactHeading}</legend>
+                  <legend className="mb-6 flex items-center gap-3 text-lg font-semibold text-white">
+                    <span aria-hidden="true" className="flex h-7 w-7 items-center justify-center rounded-lg border border-yellow-400/20 bg-yellow-400/5 text-xs font-bold text-yellow-400">01</span>
+                    {t.junkContactHeading}
+                  </legend>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-5">
                     <label className="min-w-0">
-                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.fullName} <span aria-hidden="true">*</span></span>
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.fullName} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                       <input className={inputClassName} name="name" autoComplete="name" required />
                     </label>
                     <label className="min-w-0">
-                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.phoneNumber} <span aria-hidden="true">*</span></span>
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.phoneNumber} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                       <input className={inputClassName} name="phone" type="tel" autoComplete="tel" placeholder="(407) 555-0123" required />
                     </label>
                     <label className="min-w-0">
@@ -175,30 +179,33 @@ export default function JunkCarCash() {
                       <input className={inputClassName} name="email" type="email" autoComplete="email" />
                     </label>
                     <label className="min-w-0">
-                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.junkPickupLocation} <span aria-hidden="true">*</span></span>
+                      <span className={`${labelClassName} min-h-12 sm:min-h-6`}>{t.junkPickupLocation} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                       <input className={inputClassName} name="pickup_location" placeholder={t.junkLocationPlaceholder} required />
                     </label>
                   </div>
                 </fieldset>
 
-                <fieldset className="border-t border-slate-200 pt-7">
-                  <legend className="float-left mb-6 w-full text-2xl font-extrabold text-slate-950">{t.junkVehicleHeading}</legend>
+                <fieldset className="border-t border-white/10 pt-7">
+                  <legend className="float-left mb-6 flex w-full items-center gap-3 text-lg font-semibold text-white">
+                    <span aria-hidden="true" className="flex h-7 w-7 items-center justify-center rounded-lg border border-yellow-400/20 bg-yellow-400/5 text-xs font-bold text-yellow-400">02</span>
+                    {t.junkVehicleHeading}
+                  </legend>
                   <div className="clear-both space-y-5">
                     <label className="block">
-                      <span className={labelClassName}>{t.junkYear} <span aria-hidden="true">*</span></span>
+                      <span className={labelClassName}>{t.junkYear} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                       <input className={inputClassName} name="year" inputMode="numeric" placeholder="2015" required />
                     </label>
                     <div className="grid grid-cols-2 gap-x-4 gap-y-5">
                       <label className="min-w-0">
-                        <span className={labelClassName}>{t.junkMake} <span aria-hidden="true">*</span></span>
+                        <span className={labelClassName}>{t.junkMake} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                         <input className={inputClassName} name="make" placeholder="Ford" required />
                       </label>
                       <label className="min-w-0">
-                        <span className={labelClassName}>{t.junkModel} <span aria-hidden="true">*</span></span>
+                        <span className={labelClassName}>{t.junkModel} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                         <input className={inputClassName} name="model" placeholder="Explorer" required />
                       </label>
                       <label className="grid min-w-0 grid-rows-[1fr_auto]">
-                        <span className={labelClassName}>{t.junkRunsQuestion} <span aria-hidden="true">*</span></span>
+                        <span className={labelClassName}>{t.junkRunsQuestion} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                         <select className={inputClassName} name="runs" required defaultValue="">
                           <option value="" disabled>{t.junkChoose}</option>
                           <option value="yes">{t.junkYes}</option>
@@ -207,7 +214,7 @@ export default function JunkCarCash() {
                         </select>
                       </label>
                       <label className="grid min-w-0 grid-rows-[1fr_auto]">
-                        <span className={labelClassName}>{t.junkTitleShortQuestion} <span aria-hidden="true">*</span></span>
+                        <span className={labelClassName}>{t.junkTitleShortQuestion} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                         <select className={inputClassName} name="title_confirmed" required defaultValue="">
                           <option value="" disabled>{t.junkChoose}</option>
                           <option value="yes">{t.junkYes}</option>
@@ -216,7 +223,7 @@ export default function JunkCarCash() {
                       </label>
                     </div>
                     <label className="block">
-                      <span className={labelClassName}>{t.junkCompleteQuestion} <span aria-hidden="true">*</span></span>
+                      <span className={labelClassName}>{t.junkCompleteQuestion} <span aria-hidden="true" className="text-yellow-400">*</span></span>
                       <select className={inputClassName} name="complete_confirmed" required defaultValue="">
                         <option value="" disabled>{t.junkChoose}</option>
                         <option value="yes">{t.junkYes}</option>
@@ -231,18 +238,18 @@ export default function JunkCarCash() {
                   <textarea className={`${inputClassName} resize-y`} name="notes" rows={4} placeholder={t.junkNotesPlaceholder} />
                 </label>
 
-                <label className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-700 sm:text-base">
-                  <input className="mt-1 h-5 w-5 shrink-0 accent-yellow-500" type="checkbox" name="contact_consent" value="yes" required />
+                <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/[0.025] p-4 text-sm leading-6 text-slate-300 sm:text-base">
+                  <input className="mt-1 h-5 w-5 shrink-0 accent-yellow-400 [color-scheme:dark]" type="checkbox" name="contact_consent" value="yes" required />
                   <span>{t.junkContactConsent}</span>
                 </label>
 
                 <button
                   type="submit"
                   disabled={sending}
-                  className="flex w-full items-center justify-between gap-4 rounded-xl bg-yellow-400 px-5 py-4 text-base font-extrabold text-black shadow-lg shadow-yellow-500/15 transition hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:text-lg"
+                  className="group flex w-full items-center justify-between gap-4 rounded-xl border border-yellow-200/30 bg-gradient-to-r from-yellow-300 to-yellow-400 px-5 py-4 text-base font-extrabold text-black shadow-[0_8px_28px_rgba(250,204,21,.14)] transition duration-200 hover:shadow-[0_8px_35px_rgba(250,204,21,.25)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-300 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:text-lg"
                 >
                   <span>{sending ? t.junkSending : t.junkSubmit}</span>
-                  <ArrowUpRight className="h-6 w-6 shrink-0" />
+                  <ArrowUpRight className="h-6 w-6 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
 
                 {status && (
@@ -250,8 +257,8 @@ export default function JunkCarCash() {
                     aria-live="polite"
                     className={`rounded-xl border px-4 py-3 text-center text-sm font-semibold ${
                       sent
-                        ? "border-green-600/30 bg-green-50 text-green-800"
-                        : "border-amber-500/30 bg-amber-50 text-amber-900"
+                        ? "border-green-500/30 bg-green-500/10 text-green-300"
+                        : "border-yellow-400/30 bg-yellow-400/10 text-yellow-200"
                     }`}
                   >
                     {status}
@@ -263,15 +270,15 @@ export default function JunkCarCash() {
                     href={`https://wa.me/14073606109?text=${encodeURIComponent(t.junkWhatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-green-600/30 bg-green-50 px-6 py-3.5 font-bold text-green-800 transition hover:bg-green-100"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-green-500/30 bg-green-500/10 px-6 py-3.5 font-bold text-green-300 transition hover:bg-green-500/15"
                   >
                     <Camera className="h-5 w-5" />
                     {t.junkWhatsappPhotos}
                   </a>
                 )}
-                <p className="text-sm leading-6 text-slate-600">{t.junkFormDisclaimer}</p>
-                <PrivacyNotice tone="light" />
-                <noscript><p className="text-sm text-amber-900">{t.formNeedsJavascript}</p></noscript>
+                <p className="text-sm leading-6 text-slate-400">{t.junkFormDisclaimer}</p>
+                <PrivacyNotice />
+                <noscript><p className="text-sm text-yellow-300">{t.formNeedsJavascript}</p></noscript>
               </form>
             </div>
           </div>
