@@ -132,36 +132,16 @@ heroTitleLocation: "en Orlando",
     { title: "Área de Orlando", text: "Sirviendo Florida Central" },
   ],
 
-  reviewsEyebrow: "Reputación con Clientes",
+  reviewsEyebrow: "Conecta con nosotros",
   reviewsTitleOne: "Preferimos",
   reviewsTitleTwo: "ganarnos tus",
   reviewsTitleThree: "palabras.",
-  reviewsDescription:
-    "Cada reseña mostrada aquí viene de un cliente real. Sin recomendaciones pagadas ni testimonios fabricados: solo las experiencias de los conductores que hemos ayudado en Florida Central.",
-  reviewsSupportingText:
-    "La reputación no es algo que dices tener. Es algo que te ganas, un servicio a la vez.",
-  realCustomerReview: "Reseña de Cliente Real",
-  builtOnRealExperiences: "Construido con Experiencias Reales",
-  reviewsClosingBefore: "Cada grúa tiene una historia.",
-  reviewsClosingHighlight:
-    "Estas son solo algunas de las personas que decidieron compartir la suya.",
-  reviewItems: [
-    {
-      name: "Sarah M.",
-      source: "Facebook",
-      text: "Servicio rápido. Llegaron en menos de 20 minutos y atendieron mi vehículo con mucho cuidado. Muy recomendados.",
-    },
-    {
-      name: "Michael R.",
-      source: "Facebook",
-      text: "Profesionales, amables y extremadamente rápidos. Hicieron una situación estresante mucho más fácil.",
-    },
-    {
-      name: "Jessica T.",
-      source: "Facebook",
-      text: "Excelente comunicación de principio a fin. Precios honestos y servicio al cliente excepcional.",
-    },
-  ],
+  reviewsDescription: "Visita nuestra página de Facebook para conocer más sobre Integral Business LLC y contactar a nuestro equipo.",
+  reviewsSupportingText: "¿Te hemos ayudado? Puedes compartir tu experiencia directamente en nuestra página de Facebook.",
+  visitFacebook: "Visita nuestra página de Facebook",
+  privacyPolicy: "Política de privacidad",
+  formPrivacyNotice: "Usamos los datos que envías para responder tu consulta y coordinar el servicio o la oferta por el vehículo que solicitas. El envío utiliza EmailJS.",
+  formNeedsJavascript: "Para usar este formulario, activa JavaScript. También puedes llamarnos al (407) 360-6109.",
 
   contactEyebrow: "¿Necesitas una Grúa?",
   contactTitle: "Estamos Listos para Ayudarte",

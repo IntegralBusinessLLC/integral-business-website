@@ -132,36 +132,16 @@ export const en = {
     { title: "Orlando Area", text: "Serving Central Florida" },
   ],
 
-  reviewsEyebrow: "Customer Reputation",
+  reviewsEyebrow: "Connect with us",
   reviewsTitleOne: "We'd rather",
   reviewsTitleTwo: "earn your",
   reviewsTitleThree: "words.",
-  reviewsDescription:
-    "Every review displayed here comes from a real customer. No paid endorsements, no fabricated testimonials — only the experiences of the drivers we've helped across Central Florida.",
-  reviewsSupportingText:
-    "Reputation isn't something you claim. It's something you earn, one service call at a time.",
-  realCustomerReview: "Real Customer Review",
-  builtOnRealExperiences: "Built on Real Experiences",
-  reviewsClosingBefore: "Every tow has a story.",
-  reviewsClosingHighlight:
-    "These are just a few of the people who chose to share theirs.",
-  reviewItems: [
-    {
-      name: "Sarah M.",
-      source: "Facebook",
-      text: "Fast service. Arrived in less than 20 minutes and handled my vehicle with great care. Highly recommended.",
-    },
-    {
-      name: "Michael R.",
-      source: "Facebook",
-      text: "Professional, friendly and extremely quick. They made a stressful situation much easier.",
-    },
-    {
-      name: "Jessica T.",
-      source: "Facebook",
-      text: "Excellent communication from start to finish. Honest pricing and outstanding customer service.",
-    },
-  ],
+  reviewsDescription: "Visit our Facebook page to learn more about Integral Business LLC and get in touch with our team.",
+  reviewsSupportingText: "Have we helped you? You can share your experience directly on our Facebook page.",
+  visitFacebook: "Visit our Facebook page",
+  privacyPolicy: "Privacy Policy",
+  formPrivacyNotice: "We use the information you submit to respond to your inquiry and coordinate the service or vehicle offer you request. Sending uses EmailJS.",
+  formNeedsJavascript: "To use this form, enable JavaScript. You can also call us at (407) 360-6109.",
 
   contactEyebrow: "Need a Tow?",
   contactTitle: "We're Ready to Help",

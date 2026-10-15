@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import emailjs from "@emailjs/browser";
+import PrivacyNotice from "./PrivacyNotice";
 import { BadgeDollarSign, Camera, Car, FileCheck2, MapPin, Truck } from "lucide-react";
 import { useLanguage } from "./context/LanguageContext";
 
@@ -146,29 +147,29 @@ export default function JunkCarCash() {
                 </div>
               </div>
 
-              <form ref={formRef} onSubmit={submitLead} className="mt-8 space-y-5">
+              <form ref={formRef} method="post" onSubmit={submitLead} className="mt-8 space-y-5">
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <input className={inputClassName} name="name" placeholder={t.fullName} required />
-                  <input className={inputClassName} name="phone" type="tel" placeholder={t.phoneNumber} required />
+                  <input className={inputClassName} name="name" placeholder={t.fullName} aria-label={t.fullName} required />
+                  <input className={inputClassName} name="phone" type="tel" placeholder={t.phoneNumber} aria-label={t.phoneNumber} required />
                 </div>
 
-                <input className={inputClassName} name="email" type="email" placeholder={t.emailOptional} />
+                <input className={inputClassName} name="email" type="email" placeholder={t.emailOptional} aria-label={t.emailOptional} />
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <input className={inputClassName} name="year" inputMode="numeric" placeholder={t.junkYear} required />
-                  <input className={inputClassName} name="make" placeholder={t.junkMake} required />
-                  <input className={inputClassName} name="model" placeholder={t.junkModel} required />
+                  <input className={inputClassName} name="year" inputMode="numeric" placeholder={t.junkYear} aria-label={t.junkYear} required />
+                  <input className={inputClassName} name="make" placeholder={t.junkMake} aria-label={t.junkMake} required />
+                  <input className={inputClassName} name="model" placeholder={t.junkModel} aria-label={t.junkModel} required />
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="relative">
                     <MapPin className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-yellow-400" />
-                    <input className={`${inputClassName} pl-12`} name="pickup_location" placeholder={t.junkPickupLocation} required />
+                    <input className={`${inputClassName} pl-12`} name="pickup_location" placeholder={t.junkPickupLocation} aria-label={t.junkPickupLocation} required />
                   </label>
-                  <input className={inputClassName} name="asking_price" type="number" min="0" step="1" placeholder={t.junkAskingPrice} required />
+                  <input className={inputClassName} name="asking_price" type="number" min="0" step="1" placeholder={t.junkAskingPrice} aria-label={t.junkAskingPrice} required />
                 </div>
 
-                <select className={inputClassName} name="condition" required defaultValue="">
+                <select className={inputClassName} name="condition" aria-label={t.junkCondition} required defaultValue="">
                   <option value="" disabled>{t.junkCondition}</option>
                   <option value={t.junkConditionNotRunning}>{t.junkConditionNotRunning}</option>
                   <option value={t.junkConditionAccident}>{t.junkConditionAccident}</option>
@@ -195,7 +196,7 @@ export default function JunkCarCash() {
                   </label>
                 </div>
 
-                <textarea className={`${inputClassName} resize-none`} name="notes" rows={4} placeholder={t.junkNotes} />
+                <textarea className={`${inputClassName} resize-none`} name="notes" rows={4} placeholder={t.junkNotes} aria-label={t.junkNotes} />
 
                 <button
                   type="submit"
@@ -230,6 +231,8 @@ export default function JunkCarCash() {
                     {t.junkWhatsappPhotos}
                   </a>
                 )}
+                <PrivacyNotice />
+                <noscript><p className="text-sm text-yellow-300">{t.formNeedsJavascript}</p></noscript>
               </form>
             </div>
           </div>

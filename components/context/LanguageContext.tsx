@@ -2,10 +2,12 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
   ReactNode,
 } from "react";
 
@@ -33,6 +35,24 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
+function subscribeToLanguage(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function readSavedLanguage(): Language {
+  try {
+    const saved = localStorage.getItem("integral-language");
+    return saved === "es" || saved === "pt" ? saved : "en";
+  } catch {
+    return "en";
+  }
+}
+
+function serverLanguage(): Language {
+  return "en";
+}
+
 interface LanguageProviderProps {
   children: ReactNode;
 }
@@ -40,25 +60,26 @@ interface LanguageProviderProps {
 export function LanguageProvider({
   children,
 }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>("en");
+  const savedLanguage = useSyncExternalStore(
+    subscribeToLanguage,
+    readSavedLanguage,
+    serverLanguage
+  );
+  const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
+  const language = selectedLanguage ?? savedLanguage;
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem(
-      "integral-language"
-    ) as Language | null;
+    document.documentElement.lang = language;
+  }, [language]);
 
-    if (
-      savedLanguage &&
-      ["en", "es", "pt"].includes(savedLanguage)
-    ) {
-      setLanguageState(savedLanguage);
+  const setLanguage = useCallback((newLanguage: Language) => {
+    setSelectedLanguage(newLanguage);
+    try {
+      localStorage.setItem("integral-language", newLanguage);
+    } catch {
+      // Language selection also works when browser storage is unavailable.
     }
   }, []);
-
-  const setLanguage = (newLanguage: Language) => {
-    setLanguageState(newLanguage);
-    localStorage.setItem("integral-language", newLanguage);
-  };
 
   const value = useMemo(
     () => ({
@@ -69,7 +90,7 @@ export function LanguageProvider({
         ...translations[language],
       },
     }),
-    [language]
+    [language, setLanguage]
   );
 
   return (

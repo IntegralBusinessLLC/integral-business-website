@@ -132,36 +132,16 @@ export const pt = {
     { title: "Área de Orlando", text: "Atendendo a Flórida Central" },
   ],
 
-  reviewsEyebrow: "Reputação com Clientes",
+  reviewsEyebrow: "Conecte-se conosco",
   reviewsTitleOne: "Preferimos",
   reviewsTitleTwo: "conquistar suas",
   reviewsTitleThree: "palavras.",
-  reviewsDescription:
-    "Cada avaliação exibida aqui vem de um cliente real. Sem recomendações pagas ou depoimentos inventados — apenas as experiências dos motoristas que ajudamos na Flórida Central.",
-  reviewsSupportingText:
-    "Reputação não é algo que você afirma ter. É algo que você conquista, um atendimento por vez.",
-  realCustomerReview: "Avaliação de Cliente Real",
-  builtOnRealExperiences: "Feito com Experiências Reais",
-  reviewsClosingBefore: "Cada guincho tem uma história.",
-  reviewsClosingHighlight:
-    "Estas são apenas algumas das pessoas que escolheram compartilhar a delas.",
-  reviewItems: [
-    {
-      name: "Sarah M.",
-      source: "Facebook",
-      text: "Serviço rápido. Chegaram em menos de 20 minutos e cuidaram do meu veículo com muita atenção. Recomendo muito.",
-    },
-    {
-      name: "Michael R.",
-      source: "Facebook",
-      text: "Profissionais, simpáticos e extremamente rápidos. Tornaram uma situação estressante muito mais fácil.",
-    },
-    {
-      name: "Jessica T.",
-      source: "Facebook",
-      text: "Excelente comunicação do início ao fim. Preços honestos e atendimento ao cliente excepcional.",
-    },
-  ],
+  reviewsDescription: "Visite nossa página no Facebook para conhecer melhor a Integral Business LLC e entrar em contato com nossa equipe.",
+  reviewsSupportingText: "Nós ajudamos você? Compartilhe sua experiência diretamente em nossa página no Facebook.",
+  visitFacebook: "Visite nossa página no Facebook",
+  privacyPolicy: "Política de privacidade",
+  formPrivacyNotice: "Usamos os dados enviados para responder à sua consulta e coordenar o serviço ou a oferta pelo veículo que você solicita. O envio utiliza o EmailJS.",
+  formNeedsJavascript: "Para usar este formulário, ative o JavaScript. Você também pode ligar para (407) 360-6109.",
 
   contactEyebrow: "Precisa de Guincho?",
   contactTitle: "Estamos Prontos para Ajudar",

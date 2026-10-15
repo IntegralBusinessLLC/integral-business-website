@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import PrivacyNotice from "./PrivacyNotice";
 import { useLanguage } from "./context/LanguageContext";
 
 export default function CallNow() {
@@ -74,13 +75,13 @@ export default function CallNow() {
               {t.requestAssistance}
             </h3>
 
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-5">
+            <form ref={formRef} method="post" onSubmit={sendEmail} className="space-y-5">
 
               <input
                 type="text"
                 name="name"
                 required
-                placeholder={t.fullName}
+                placeholder={t.fullName} aria-label={t.fullName}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
@@ -88,14 +89,14 @@ export default function CallNow() {
                 type="tel"
                 name="phone"
                 required
-                placeholder={t.phoneNumber}
+                placeholder={t.phoneNumber} aria-label={t.phoneNumber}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
               <input
                 type="email"
                 name="email"
-                placeholder={t.emailOptional}
+                placeholder={t.emailOptional} aria-label={t.emailOptional}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none focus:border-yellow-400"
               />
 
@@ -103,7 +104,7 @@ export default function CallNow() {
                 rows={5}
                 name="message"
                 required
-                placeholder={t.tellUsWhatHappened}
+                placeholder={t.tellUsWhatHappened} aria-label={t.tellUsWhatHappened}
                 className="w-full rounded-xl bg-[#1a1a1a] border border-gray-700 px-5 py-4 text-white outline-none resize-none focus:border-yellow-400"
               />
 
@@ -120,6 +121,8 @@ export default function CallNow() {
                   {status}
                 </p>
               )}
+              <PrivacyNotice />
+              <noscript><p className="text-sm text-yellow-300">{t.formNeedsJavascript}</p></noscript>
             </form>
           </div>
 

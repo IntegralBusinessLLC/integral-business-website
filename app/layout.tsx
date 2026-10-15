@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/components/context/LanguageContext";
 
 const geistSans = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://integralbusiness-llc.com"),
+  metadataBase: new URL("https://www.integralbusiness-llc.com"),
 
   title: "Integral Business LLC | Towing & Roadside Assistance",
   description:
@@ -36,13 +37,13 @@ export const metadata: Metadata = {
   title: "Integral Business LLC",
   description:
     "Professional Towing & Roadside Assistance in Orlando. Fast, reliable service available 24/7.",
-  url: "https://integralbusiness-llc.com",
+  url: "https://www.integralbusiness-llc.com",
   siteName: "Integral Business LLC",
   locale: "en_US",
   type: "website",
   images: [
     {
-      url: "https://integralbusiness-llc.com/images/integral-whatsapp-preview.png",
+      url: "https://www.integralbusiness-llc.com/images/integral-whatsapp-preview.png",
       width: 1200,
       height: 630,
       alt: "Integral Business LLC Towing & Roadside Assistance",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Professional Towing & Roadside Assistance in Orlando. Fast, reliable service available 24/7.",
     images: [
-  "https://integralbusiness-llc.com/images/integral-whatsapp-preview.png",
+  "https://www.integralbusiness-llc.com/images/integral-whatsapp-preview.png",
 ],
   },
 };
@@ -72,7 +73,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>{children}<Footer /></LanguageProvider>
       </body>
     </html>
   );
